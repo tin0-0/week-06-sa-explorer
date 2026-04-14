@@ -1,0 +1,4 @@
+Weather Summary Report
+==============================
+
+Total records: 0
