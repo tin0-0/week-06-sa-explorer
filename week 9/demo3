@@ -1,0 +1,26 @@
+class bank_account:
+    Bank_name = "Robobi"
+    def __init__(self, owner, balance = 0):
+        self.owner = owner 
+        self.balance = balance
+
+    def deposit(self,amount):
+        if amount <= 0:
+            raise ValueError("Amount must be postive")
+        self.balance += amount
+
+    def withdraw(self,amount):
+        if amount > self.balance:
+            raise ValueError("Insufficient funds")
+        self.balance -= amount
+        
+account = bank_account("Thabo",50)
+
+
+print(f"{account.owner} Balance: {account.balance}")
+
+account.deposit(50)
+
+print(f"{account.owner} Balance: {account.balance}")
+
+print(account.Bank_name)
