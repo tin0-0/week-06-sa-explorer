@@ -1,4 +1,5 @@
 from sa_utils import calculate_vat, format_zar, validate_sa_id
+import pytest
 
 assert calculate_vat(100) == 15.0
 

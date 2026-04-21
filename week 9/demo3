@@ -13,7 +13,7 @@ class bank_account:
         if amount > self.balance:
             raise ValueError("Insufficient funds")
         self.balance -= amount
-        
+
 account = bank_account("Thabo",50)
 
 
@@ -24,3 +24,12 @@ account.deposit(50)
 print(f"{account.owner} Balance: {account.balance}")
 
 print(account.Bank_name)
+print(f"{account.owner} Balance: R{account.balance}")
+account.deposit(200)
+print(f"{account.owner} Balance: R{account.balance}")
+account.withdraw(50)
+print(f"{account.owner} Balance: R{account.balance}")
+try:
+    account.withdraw(300)
+except ValueError as e:
+    print(f"Error: {e}")
