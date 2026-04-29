@@ -1,7 +1,6 @@
-from flask import Flask, render_template
+from flask import Flask, request, abort
 
 app = Flask(__name__)
-
 PROVINCES = {
     "Gauteng": {"capital": "Johannesburg", "pop_millions": 15.5, "area_km2": 18176},
     "Western Cape": {"capital": "Cape Town", "pop_millions": 7.2, "area_km2": 129462},
@@ -13,14 +12,38 @@ PROVINCES = {
     "Free State": {"capital": "Bloemfontein", "pop_millions": 2.9, "area_km2": 129825},
     "Northern Cape": {"capital": "Kimberley", "pop_millions": 1.3, "area_km2": 372889},
 }
+@app.route("/")
+def greet():
+    return "<h1>Dumelang</h1>" 
 
 @app.route("/hello/<name>")
 def hello(name):
-    return render_template("hello.html", name=name)
+    return f"<h1>Hello, {name}!</h1>"
 
-@app.route("/provinces")
-def provinces():
-    return render_template("province.html", provinces = PROVINCES)
+@app.route("/user/<id>")
+def show_user(id):
+    #<int
+    return f"<h1> User #{id}</h1><p>This is of type {type(id).__name__}</p>"
+
+@app.route("/province/<name>")
+def  province(name):
+    name - name.title()
+    if name not in PROVINCES:
+        abort(404)
+        P = PROVINCES[name]
+        return f"<h1>{name}</h1><p>Capital: {P['capital']}</p><p>Population: {P['pop_millions']} million</p><p>Area: {P['area_km2']} km2</p>"
+
+        return f"<h1> SA Provinces</h1><p>{', '.join(PROVINCES)}/p>"
+
+
+@app.route("/search")
+def search():
+    q = request.args.get("q", "")
+    return f"<h1>Searching for '{q}'</h1>"
+
+
+
+
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug = True)
