@@ -5,6 +5,16 @@
 {% block content %}
     <h1 class = "text-3xl font-bold mb-4">Feedback</h1>
 
+{% messsages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+<div class = "space-y-2 mb-4"
+    {% for cat, msg in messages %}
+    <div class ="px-4 py-2 rounded
+        {% if cat == 'success' %}bg-green-100 text-green-800
+        {%elif cat == 'error' %}bg-red-100 text-red-800
+        {% else %}bg-gray-100 text-gray-800{% endif %}">
+        {{ msg }}
+
 {% if errors %}
 <div class = "bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
     <ul class = "list-disc list-inside">
@@ -29,3 +39,4 @@
 
     <button class = "bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Submit</button>
 </form>
+{% endblock %}
