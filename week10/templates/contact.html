@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Contact{% endblock %}
+
+{%block content %}
+<h1 class ="text-3xl font-bold mb-4">Contact Us</h1>
+{% if errors %}
+<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
+    <ul class="list-disc list-inside">
+        {% for error in errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+<form action="contact" method="POST" class ="space-y-4 max-w-md">
+    <input name ="name" type = "text" value="{{ name }}" class="w-full border rounded px-3 py-2" placeholder="Your Name">
+    <textarea name = "message" class = "w-full border rounded px-3 py-2" rows ="4" placeholder="Your Message">{{ message }}</textarea>
+    <button class = "bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Submit</button>
+    <!-- <div>
+        <lable for="name" class="block text-sm font-medium text-gray-700">Name</lable>
+        <input name = "name" type ="text" class="w-full border round px03 py-2">
+    </div>
+    <div>
+        <lable for ="message" class = "block text-sm font-medium text-gray-700">Message</lable>
+        <textarea name = "message" class="w-full border rounded px-3 py-2"></textarea>
+    </div>
+    <button class ="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Submit</button> -->
+</form>
+    </div>
+
+{% endblock %}

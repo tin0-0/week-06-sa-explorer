@@ -1,6 +1,6 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
-app = Flask(__name__)
+
 
 PROVINCES = {
     "Gauteng": {"capital": "Johannesburg", "pop_millions": 15.5, "area_km2": 18176},
@@ -13,7 +13,8 @@ PROVINCES = {
     "Free State": {"capital": "Bloemfontein", "pop_millions": 2.9, "area_km2": 129825},
     "Northern Cape": {"capital": "Kimberley", "pop_millions": 1.3, "area_km2": 372889},
 }
-
+app = Flask(__name__)
+app.secret_key = "dev-"
 @app.route("/hello/<name>")
 def hello(name):
     return render_template("hello.html", name=name, age =30, city="New York")
@@ -21,6 +22,24 @@ def hello(name):
 @app.route("/provinces")
 def provinces():
     return render_template("province.html", provinces = PROVINCES)
+
+@app.route("/contact", methods =["GET", "POST"])
+def contact():
+    errors = []
+    name = ""
+    message = ""
+    if request.method == "POST":
+        name = request.form.get("name", "").strip()
+        message = request.form.get("message", "").strip()
+        if not name:
+            errors.append("Name is required")
+        if len(message) < 10:
+            errors.append("Message should be at least 10 characters long")
+        
+        if not errors:
+            print (f"FROM {name}: {message}") #in real life this would be sent to an email address
+            return render_template("contact_thanks.html", name = name)
+    return render_template("contact.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
