@@ -16,7 +16,7 @@ PROVINCES = {
 
 @app.route("/hello/<name>")
 def hello(name):
-    return render_template("hello.html", name=name)
+    return render_template("hello.html", name=name, age =30, city="New York")
 
 @app.route("/provinces")
 def provinces():

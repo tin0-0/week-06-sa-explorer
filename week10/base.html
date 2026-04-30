@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} SA Flask App{% endblock %}</title>
+    <script> src = "https://cdn.tailwindcss.com"</script>
+</head>
+<body class = "bg-gray-50 text-gray-900 min-h-screen">
+    <nav class = "bg-blue-600 text-white- p-4 shadow">
+        <div class ="max-w-4xl mx -auto -flex justify-between items-center">
+            <h1 class ="text-xl font-bold">SA Flask App</h1>
+            <div class ="space-x-4">
+                <a href = "/" class ="hover:underline">Home</a>
+                <a href ="/provinces" class="hover:underline">Province</a>
+            </div>
+        </div>
+    </nav>
+    <main class "max-w-4xl mx -auto p-6">
+        {%block content %}{%endblock}
+    </main>
+    <footer class = "text-center text-small text-gray-500 p-4">
+        &copy; 2024 SA Flask App. All rights reserved.
+    </footer>
+</body>
+</html>

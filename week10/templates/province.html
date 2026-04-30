@@ -1,32 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Provinces</title>
-</head>
-<body>
-    <h1>South African Provinces</h1>
+{% extends "base.html %"}
+
+{%block title %}SA Provinces {% endblock %}
+
+{% block content %}
+    <h1 class = "text-3xl font-bold mb-4">South African Provinces</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {% for name , info in provinces.items() %}
+        <div class="bg-white p-4 rounded shadow">
+            <h2 class="text-xl font-bold">{{ name }}</h2>
+            <p class ="text-gray-600"><strong>Capital:</strong> {{ info.capital }}</p>
+            <p class="text-gray-600"><strong>Population:</strong> {{ info.pop_millions }}M</p>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}
     <ul>
         {% for name, info in provinces.items() %}
           <li><strong>{{name}}</strong>capital {{ info.capital}}, {{ info.pop_millions }}M people</li>
           {% endfor %}
     </ul>
 
-    {% if provinces %}
-    <ul>
-         {% for name, info in provinces.items() %}
-         <li>
-            <strong>{{ name }}</strong> {{ info.pop_millions }}
-            {%if info.pop_millions > 10%}
-                <span style="color:red">(major hub!)</span>
-            {%endif %}
-         </li>
-         {% endfor %}
-    </ul>
-    {% else %}
-    <p>No provinces loaded.</p>
-    {% endif %}
+   
 
 </body>
 </html>
